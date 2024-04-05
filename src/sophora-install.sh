@@ -10,6 +10,11 @@ source /usr/bin/gettext.sh
 export TEXTDOMAIN="sophora-install"
 
 
+if [ "$EUID" -ne 0 ]; then
+    eval_gettext "This program needs root rights!"; echo
+    exit 1
+fi
+
 eval_gettext "Installing ${@}..."; echo
 if ! emerge -qav --autounmask-write --autounmask=y $@; then
     exit 1

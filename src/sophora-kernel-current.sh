@@ -9,6 +9,11 @@ source /usr/bin/env bash
 export TEXTDOMAIN="sophora-kernel-current"
 
 
+if [ "$EUID" -ne 0 ]; then
+    eval_gettext "This program needs root rights!"; echo
+    exit 1
+fi
+
 eval_gettext "Switch to current kernel..."; echo
 echo sys-kernel/gentoo-kernel-bin ~amd64 >> /etc/portage/package.accept_keywords/kernel-current
 echo virtual/dist-kernel ~amd64 >> /etc/portage/package.accept_keywords/kernel-current

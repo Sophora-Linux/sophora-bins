@@ -8,6 +8,12 @@
 source /usr/bin/gettext.sh
 export TEXTDOMAIN="sophora-git-sync"
 
+
+if [ "$EUID" -ne 0 ]; then
+    eval_gettext "This program needs root rights!"; echo
+    exit 1
+fi
+
 eval_gettext "Checking for Git presence..."; echo
 if ! git --version > /dev/null; then
     eval_gettext "Git not detected. Installing it..."; echo

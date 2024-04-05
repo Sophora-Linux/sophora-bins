@@ -9,6 +9,11 @@ source /usr/bin/gettext.sh
 export TEXTDOMAIN="sophora-nvidia"
 
 
+if [ "$EUID" -ne 0 ]; then
+    eval_gettext "This program needs root rights!"; echo
+    exit 1
+fi
+
 eval_gettext "Unmasking latest NVIDIA drivers..."; echo
 echo "media-video/ffmpeg nvenc" >> /etc/portage/package.use/nvenc
 echo "x11-drivers/nvidia-drivers ~amd64" >> /etc/portage/package.accept_keywords/nvidia-drivers

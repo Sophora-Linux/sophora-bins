@@ -10,6 +10,11 @@ source /usr/bin/gettext.sh
 export TEXTDOMAIN="sophora-delete"
 
 
+if [ "$EUID" -ne 0 ]; then
+    eval_gettext "This program needs root rights!"; echo
+    exit 1
+fi
+
 if [[ "$1" == "--break-system" ]]; then
     unmerge="emerge -ac"
     packages=( "${@/--break-system}" )

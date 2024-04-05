@@ -8,5 +8,11 @@
 source /usr/bin/gettext.sh
 export TEXTDOMAIN="sophora-grub-update"
 
+
+if [ "$EUID" -ne 0 ]; then
+    eval_gettext "This program needs root rights!"; echo
+    exit 1
+fi
+
 eval_gettext "Updating GRUB configuration"; echo
 grub-mkconfig -o /boot/grub/grub.cfg

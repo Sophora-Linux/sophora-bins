@@ -12,6 +12,11 @@ TKG_DIR="/usr/share/sophora/tools/tkg"
 TKG_REPO="https://github.com/Frogging-Family/linux-tkg"
 
 
+if [ "$EUID" -ne 0 ]; then
+    eval_gettext "This program needs root rights!"; echo
+    exit 1
+fi
+
 if [ -d "$TKG_DIR" ]; then
     mkdir -p "$TKG_DIR"
 fi

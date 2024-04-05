@@ -9,6 +9,11 @@ source /usr/bin/gettext.sh
 export TEXTDOMAIN="sophora-edit"
 
 
+if [ "$EUID" -ne 0 ]; then
+    eval_gettext "This program needs root rights!"; echo
+    exit 1
+fi
+
 if [[ -z $EDITOR ]]; then
     eval_gettext "No default editor is given, defaulting to 'vi'."; echo
     EDITOR=vi

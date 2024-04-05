@@ -11,6 +11,11 @@ export TEXTDOMAIN="sophora-set-tkg"
 TKG_DIR="/usr/share/sophara/tools/tkg"
 
 
+if [ "$EUID" -ne 0 ]; then
+    eval_gettext "This program needs root rights!"; echo
+    exit 1
+fi
+
 eval_gettext "Installing necessary packages..."; echo
 if ! emerge -q app-arch/lz4 schedtool; then
     eval_gettext "Failed to install necessary packages!"; echo

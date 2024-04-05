@@ -14,9 +14,8 @@ if [ "$EUID" -ne 0 ]; then
     exit 1
 fi
 
-eval_gettext "Unmasking latest NVIDIA drivers..."; echo
+eval_gettext "Adapting USEflags for NVIDIA drivers..."; echo
 echo "media-video/ffmpeg nvenc" >> /etc/portage/package.use/nvenc
-echo "x11-drivers/nvidia-drivers ~amd64" >> /etc/portage/package.accept_keywords/nvidia-drivers
 # Install NVIDIA Settings
 echo "x11-drivers/nvidia-drivers tools" >> /etc/portage/package.use/nvidia-drivers
 

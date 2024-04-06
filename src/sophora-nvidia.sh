@@ -23,7 +23,7 @@ if ! euse -E nvenc; then
     eval_gettext "Failed to activate 'nvenc' USEflag!"; echo
     exit 1
 fi
-if ! emerge -avuN nvidia-drivers ffmpeg dev-util/nvidia-cuda-toolkit media-libs/nvidia-vaapi-driver; then
+if ! emerge -avuN nvidia-drivers media-libs/nv-codec-headers ffmpeg dev-util/nvidia-cuda-toolkit media-libs/nvidia-vaapi-driver; then
     eval_gettext "Failed to install NVIDIA drivers!"; echo
     exit 1
 fi
